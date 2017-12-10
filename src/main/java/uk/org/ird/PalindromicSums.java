@@ -16,6 +16,15 @@ package uk.org.ird;
 public class PalindromicSums {
 
     public static void main(String[] args) {
+        test();
+    }
 
+    public static void test() {
+        Palindromes.setLowerBound(121);
+        System.out.println("Is 121 a palindrome? " + Palindromes.isNotPalindrome());
+        Palindromes.setLowerBound(99);
+        System.out.println("Is 99 a palindrome? " + Palindromes.isNotPalindrome());
+        Palindromes.setLowerBound(321);
+        System.out.println("Is 321 a palindrome? " + Palindromes.isNotPalindrome());
     }
 }

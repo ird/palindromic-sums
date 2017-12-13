@@ -7,12 +7,18 @@ public class Palindromes {
      * Returns the next palindrome greater than the current one
      */
     public static int next() {
-        while (isNotPalindrome()) {
+        current += 1;
+        while (!isPalindrome()) {
             current++;
         }
         return current;
     }
-
+    public static int firstPalindrome() {
+        if(!isPalindrome()) {
+            return next();
+        }
+        return current;
+    }
     /**
      * Set the lower bound
      * @param lowerBound value to set the lower limit to
@@ -22,7 +28,7 @@ public class Palindromes {
      * test current value to see if it is a palindrome
      * @returns true whilst this.current is not a palindrome
      */
-    static boolean isNotPalindrome() {
+    static boolean isPalindrome() {
         String s = current.toString();
         int len = s.length();
         while(len > 1) {

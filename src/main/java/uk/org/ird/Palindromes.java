@@ -19,6 +19,7 @@ public class Palindromes {
         }
         return current;
     }
+    public static int valueOf() { return current; }
     /**
      * Set the lower bound
      * @param lowerBound value to set the lower limit to

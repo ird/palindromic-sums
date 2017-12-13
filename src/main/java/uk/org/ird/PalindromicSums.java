@@ -1,5 +1,7 @@
 package uk.org.ird;
 
+import java.util.LinkedList;
+
 /**
  * http://projecteuler.net/problem=125
  * "eg. The palindromic number 595 can be written as the sum of consecutive
@@ -17,14 +19,40 @@ public class PalindromicSums {
 
     public static void main(String[] args) {
         test();
+        int sum = 0;
+        LinkedList<Integer> result = build(1000);
+        for(int e: result) {
+            sum += e;
+        }
+    }
+
+    /**
+     * Build a list of palindromes up to the limit that are also the sum of
+     * consecutive palindromes.
+     * @param limit
+     * @return a LinkedList of palindromes
+     */
+    public static LinkedList<Integer> build(int limit) {
+        LinkedList<Integer> res = new LinkedList<>();
+        int i = 0;
+        Palindromes.setLowerBound(i);
+        i = Palindromes.firstPalindrome();
+        while (i < limit) {
+            System.out.println(i);
+            if (false) { //TODO: function that tests an integer for property
+                res.add(i);
+            }
+            i = Palindromes.next();
+        }
+        return res;
     }
 
     public static void test() {
         Palindromes.setLowerBound(121);
-        System.out.println("Is 121 a palindrome? " + Palindromes.isNotPalindrome());
+        System.out.println("Is 121 a palindrome? " + Palindromes.isPalindrome());
         Palindromes.setLowerBound(99);
-        System.out.println("Is 99 a palindrome? " + Palindromes.isNotPalindrome());
+        System.out.println("Is 99 a palindrome? " + Palindromes.isPalindrome());
         Palindromes.setLowerBound(321);
-        System.out.println("Is 321 a palindrome? " + Palindromes.isNotPalindrome());
+        System.out.println("Is 321 a palindrome? " + Palindromes.isPalindrome());
     }
 }

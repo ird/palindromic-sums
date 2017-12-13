@@ -38,8 +38,7 @@ public class PalindromicSums {
         Palindromes.setLowerBound(i);
         i = Palindromes.firstPalindrome();
         while (i < limit) {
-            System.out.println(i);
-            if (false) { //TODO: function that tests an integer for property
+            if (expressibleAsSquares()) {
                 res.add(i);
             }
             i = Palindromes.next();
@@ -47,6 +46,11 @@ public class PalindromicSums {
         return res;
     }
 
+    public static boolean expressibleAsSquares() {
+        int biggest = (int) Math.sqrt(Palindromes.valueOf());
+        //TODO: factorise? then look for sequence
+        return false;
+    }
     public static void test() {
         Palindromes.setLowerBound(121);
         System.out.println("Is 121 a palindrome? " + Palindromes.isPalindrome());

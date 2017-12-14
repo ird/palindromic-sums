@@ -24,6 +24,8 @@ public class PalindromicSums {
         for(int e: result) {
             sum += e;
         }
+        System.out.println(result);
+        System.out.println(sum);
     }
 
     /**
@@ -38,7 +40,7 @@ public class PalindromicSums {
         Palindromes.setLowerBound(i);
         i = Palindromes.firstPalindrome();
         while (i < limit) {
-            if (expressibleAsSquares()) {
+            if (expressibleAsSquares(i)) {
                 res.add(i);
             }
             i = Palindromes.next();
@@ -46,9 +48,24 @@ public class PalindromicSums {
         return res;
     }
 
-    public static boolean expressibleAsSquares() {
-        int biggest = (int) Math.sqrt(Palindromes.valueOf());
-        //TODO: factorise? then look for sequence
+    public static boolean expressibleAsSquares(int target) {
+        int start = 1;
+        int end = 1;
+        int total = start * start; // 1
+        while (end <= Math.sqrt(target)) {
+            if(total == target) {
+                if(start != end) {
+                    return true;
+                }
+            }
+            if(total > target) {
+                total -= start*start;
+                start++;
+                continue;
+            }
+            end++;
+            total += end * end;
+        }
         return false;
     }
     public static void test() {
@@ -58,5 +75,9 @@ public class PalindromicSums {
         System.out.println("Is 99 a palindrome? " + Palindromes.isPalindrome());
         Palindromes.setLowerBound(321);
         System.out.println("Is 321 a palindrome? " + Palindromes.isPalindrome());
+        int[] squareTest = {1, 2, 3, 4, 21, 41, 101, 595};
+        for(int i : squareTest) {
+            System.out.println("Is "+i+" expressible as a sum of squares? "+ expressibleAsSquares(i));
+        }
     }
 }
